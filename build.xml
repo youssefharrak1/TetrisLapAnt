@@ -51,7 +51,7 @@
 	</target>
 	
 	<!--<target name="test" depends="compile-test">   
-	    <mkdir dir="${test.results.dir}" /> 
+	    <mkdir dir="${test.results.dir}" > 
 	    <junit fork="yes" printsummary="withOutAndErr" haltonfailure="no">   
 	        <jvmarg value="-Xmx512m">
 	        <classpath>
