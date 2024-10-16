@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - docs
   - dist
 
@@ -18,13 +19,22 @@ build:
     - echo "Cleaning up workspace..."
     - echo "Building the project with Ant..."
     - ant clean
-    - ant  compile
+    - ant compile
   only:
     - main
     - dev
   tags:
     - ysf_hr
 
+test:
+  stage: test
+  script:
+    - ant test
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
 
 javadoc:
   stage: docs
