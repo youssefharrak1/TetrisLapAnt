@@ -19,6 +19,11 @@ clean-job:
   stage: clean
   script:
     - ant clean
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
 
 retrieve-job:
   stage: retrieve
@@ -26,6 +31,11 @@ retrieve-job:
     - ant retrieve
   needs:
     - clean-job
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
 
 compile-job:
   stage: compile
@@ -33,6 +43,11 @@ compile-job:
     - ant compile
   needs:
     - retrieve-job
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
   artifacts:
     paths:
       - bin/
@@ -60,6 +75,11 @@ javadoc-job:
     - ant javadoc
   needs:
     - compile-job
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
   artifacts:
     paths:
       - javadoc/
@@ -71,7 +91,12 @@ dist-job:
     - ant dist
   needs:
     - javadoc-job
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
   artifacts:
     paths:
-      - dist/Tetris.jar
+      - bin/Tetris.jar
     expire_in: 1 week
