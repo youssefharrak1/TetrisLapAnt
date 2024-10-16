@@ -26,41 +26,6 @@ build:
     - ysf_hr
 
 
-javadoc:
-  stage: docs
-  script:
-    - echo "Generating Javadoc with Ant..."
-    - ant javadoc
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  dependencies:
-    - build 
-  artifacts:
-    paths:
-      - javadoc/
-    expire_in: 1 week
-
-dist:
-  stage: dist
-  script:
-    - echo "Packaging the project into a JAR file with Ant..."
-    - ant dist
-  
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  dependencies:
-    - build  
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 week
-
 
 
 
