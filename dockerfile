@@ -20,7 +20,5 @@ COPY . /app
 
 RUN ant 
 
-RUN ls /app
-# RUN ls /app
 
 CMD ["sh", "-c", "ls -l /app && cd bin && ls"]

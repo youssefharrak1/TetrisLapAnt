@@ -36,7 +36,6 @@ jobs:
       - name: Run Docker container and extract files
         run: |
           docker run --name my-java-container my-java-app:latest
-          docker exec ls /app
           docker cp my-java-container:/app/bin/Tetris.jar Tetris.jar 
           docker rm my-java-container
 
