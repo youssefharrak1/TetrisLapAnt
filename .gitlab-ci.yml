@@ -1,5 +1,6 @@
 
 stages:
+  - clean
   - build
   - test
   - documentation
@@ -16,7 +17,6 @@ build:
   stage: build
   script:
     - echo "Building the project..."
-    - ant clean
     - ant compile
 
 test:
