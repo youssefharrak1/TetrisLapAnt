@@ -1,8 +1,6 @@
 stages:
   - build
-  - test
-  - docs
-  - dist
+  
 
 variables:
   ANT_HOME: "/home/dosi/Téléchargements/apache-ant-1.9.6/"  # Set the path to your Ant installation
