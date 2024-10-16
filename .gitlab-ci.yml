@@ -16,8 +16,6 @@ build:
     - docker build -t my-image:latest .
     - docker run my-image:latest
     - mkdir -p output
-    - cp app/bin/*.jar output/Tetris.jar  # Adjust the path to your JAR file
-    - docker rm my-running-app  # Clean up the container after runnin
   artifacts:
     paths:
       - output/Tetris.jar
