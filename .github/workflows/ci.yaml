@@ -22,8 +22,10 @@ jobs:
           echo "salit 2"
           sudo apt-get clean
           which ant
-          curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C /usr --strip-components=1
-          sudo mv /usr/ivy-2.5.2.jar /usr/ivy.jar
+          TEMP_DIR=$(mktemp -d)
+          curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C "$TEMP_DIR"
+          sudo mv "$TEMP_DIR/ivy-2.5.2.jar" /usr/ivy.jar
+          rm -rf "$TEMP_DIR"
       
       - name: Build Ant
         run: ant dist
