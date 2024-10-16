@@ -53,7 +53,7 @@
 	<!--<target name="test" depends="compile-test">   
 	    <mkdir dir="${test.results.dir}" /> 
 	    <junit fork="yes" printsummary="withOutAndErr" haltonfailure="no">   
-	        <jvmarg value="-Xmx512m"/>
+	        <jvmarg value="-Xmx512m">
 	        <classpath>
 	            <pathelement location="${basedir}/lib/commons-lang3-3.5.jar"/> 
 	            <pathelement location="${basedir}/lib/junit-4.12.jar"/> 
