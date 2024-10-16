@@ -23,7 +23,7 @@ jobs:
           sudo apt-get clean
           which ant
           curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C /usr --strip-components=1
-          mv /usr/ivy-2.5.2.jar /usr/ivy.jar
+          sudo mv /usr/ivy-2.5.2.jar /usr/ivy.jar
       
       - name: Build Ant
         run: ant dist
