@@ -19,5 +19,5 @@ WORKDIR /app
 COPY . /app
 
 RUN ant 
-
+##jjj
 CMD ["sh", "-c", "ls -l /app && cd bin && ls"]
