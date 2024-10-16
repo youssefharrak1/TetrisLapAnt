@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get install openjdk-17-jdk
           echo "salit 1"
-          sudo apt-get update && apt-get install -y ant curl
+          sudo apt-get install -y ant curl
           echo "salit 2"
           sudo apt-get clean
           mkdir -p /usr/local/ivy
