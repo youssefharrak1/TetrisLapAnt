@@ -35,6 +35,8 @@ test:
     - dev
   tags:
     - ysf_hr
+  needs:
+    -build
 
 javadoc:
   stage: docs
