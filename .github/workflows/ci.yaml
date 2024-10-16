@@ -1,0 +1,46 @@
+name: Docker Build and Run
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:dind
+        options: >-
+          --privileged
+        ports:
+          - 2375:2375
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-java-app:latest .
+
+      - name: Create output directory
+        run: |
+          mkdir -p output
+
+      - name: Run Docker container and extract files
+        run: |
+          docker create --name my-java-container my-java-app:latest
+          docker cp my-java-container:/app/bin output/
+          docker rm my-java-container
+
+      - name: Upload output files
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-files
+          path: output/
