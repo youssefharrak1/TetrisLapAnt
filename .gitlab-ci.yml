@@ -21,7 +21,6 @@ build:
   artifacts:
     paths:
       - output/Tetris.jar
-    expire_in: 1 week
 
   
    
