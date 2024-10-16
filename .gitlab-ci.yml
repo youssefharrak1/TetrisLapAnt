@@ -1,77 +1,26 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
 stages:
   - build
   - test
-  - docs
-  - dist
-
-variables:
-  ANT_HOME: "home/dosi/Téléchargements/apache-ant-1.9.6"  # Set the path to your Ant installation
-
-before_script:
-  - export PATH="$ANT_HOME/bin:$PATH"
-  - echo "Starting the CI/CD pipeline..."
-  - export VERSION="v$(date +'%Y%m%d')"
-  - ant -version  # Check Ant installation
 
 build:
   stage: build
   script:
-    - echo "Cleaning up workspace..."
-    - echo "Building the project with Ant..."
-    - ant clean
-    - ant compile
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-
+    - docker build -t my-image:latest .
+  
 test:
   stage: test
   script:
-    - ant test
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  needs:
-    -build
+    - docker run --rm my-image:latest sh -c "ls -l /app && cd bin && ls"
 
-javadoc:
-  stage: docs
-  script:
-    - echo "Generating Javadoc with Ant..."
-    - ant javadoc
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  dependencies:
-    - build 
-  artifacts:
-    paths:
-      - javadoc/
-    expire_in: 1 week
 
-dist:
-  stage: dist
-  script:
-    - echo "Packaging the project into a JAR file with Ant..."
-    - ant dist
-  
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  dependencies:
-    - build  
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 week
 
 
 
