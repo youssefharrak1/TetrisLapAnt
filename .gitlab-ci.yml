@@ -18,7 +18,7 @@ build:
 test:
   stage: test
   script:
-    - docker run --rm my-image:latest sh -c "ls -l /app && cd bin && ls"
+    - docker run my-image:latest"
 
 
 
