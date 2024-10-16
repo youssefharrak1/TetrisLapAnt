@@ -19,7 +19,7 @@ build:
     - echo "Cleaning up workspace..."
     - ant clean
     - echo "Building the project with Ant..."
-    - ant -d compile
+    - ant  compile
   only:
     - main
     - dev
@@ -37,8 +37,7 @@ test:
     - dev
   tags:
     - ysf_hr
-  dependencies:
-    - build
+  
 
 javadoc:
   stage: docs
