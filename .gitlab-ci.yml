@@ -1,9 +1,8 @@
 
 stages:
   - build
-  - docs
-  - dist
-
+  - test
+  - documentation
 variables:
   ANT_HOME: "/home/dosi/Téléchargements/apache-ant-1.9.6"  # Set the path to your Ant installation
 
@@ -16,14 +15,34 @@ before_script:
 build:
   stage: build
   script:
-    - echo "Cleaning up workspace..."
-    - echo "Building the project with Ant..."
+    - echo "Building the project..."
+    - ant clean
     - ant compile
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - ant test
+  artifacts:
+    paths:
+      - bin/test-results/**/*
+      - test-reports/**/*
+
+documentation:
+  stage: documentation
+  script:
+    - echo "Generating documentation..."
+    - ant javadoc
+  artifacts:
+    paths:
+      - javadoc/**/*
+
+clean:
+  stage: cleanup
+  script:
+    - echo "Cleaning up..."
+    - ant clean
 
 
 
