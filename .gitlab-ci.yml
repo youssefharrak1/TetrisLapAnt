@@ -29,6 +29,7 @@ test:
   stage: test
   script:
     - echo "Running tests with Ant..."
+    - ant compile-test
     - ant test  # Assuming you have a test target in your build file
   only:
     - main
