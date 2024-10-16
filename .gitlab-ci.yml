@@ -1,6 +1,6 @@
 
 stages:
-  - clean
+  - cleanup
   - build
   - test
   - documentation
