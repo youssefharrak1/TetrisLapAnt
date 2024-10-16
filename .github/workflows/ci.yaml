@@ -17,11 +17,11 @@ jobs:
         run: |
           sudo apt-get install openjdk-17-jdk
           echo "salit 1"
+          pwd
           sudo apt-get install -y ant curl
           echo "salit 2"
           sudo apt-get clean
           which ant
-          mkdir -p /usr/local/ivy
           curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C /usr/local/ivy --strip-components=1
           mv /usr/local/ivy/ivy-2.5.2.jar /usr/local/ivy/ivy.jar
       
