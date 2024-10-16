@@ -17,6 +17,7 @@ build:
   stage: build
   script:
     - echo "Cleaning up workspace..."
+    - ant clean
     - echo "Building the project with Ant..."
     - ant -d compile
   only:
