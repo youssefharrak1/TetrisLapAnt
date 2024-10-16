@@ -11,7 +11,7 @@ before_script:
   - export PATH="$ANT_HOME/bin:$PATH"
   - echo "Starting the CI/CD pipeline..."
   - export VERSION="v$(date +'%Y%m%d')"
-  - ant -version  # Check Ant installation
+  - ant -version  # Check Ant installatio
 
 build:
   stage: build
