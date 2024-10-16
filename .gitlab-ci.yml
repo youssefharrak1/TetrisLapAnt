@@ -1,5 +1,5 @@
 stages:
-  - build
+  - compile
   - test
   - docs
   - dist
@@ -17,7 +17,6 @@ build:
   stage: build
   script:
     - echo "Cleaning up workspace..."
-    - rm -rf bin/* dist/*
     - echo "Building the project with Ant..."
     - ant -d compile
   only:
