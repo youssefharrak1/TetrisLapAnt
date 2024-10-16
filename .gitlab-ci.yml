@@ -14,11 +14,9 @@ build:
   stage: build
   script:
     - docker build -t my-image:latest .
+    -  docker run my-image:latest
   
-test:
-  stage: test
-  script:
-    - docker run my-image:latest
+   
 
 
 
