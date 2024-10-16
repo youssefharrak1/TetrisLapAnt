@@ -1,13 +1,10 @@
 stages:
-  - clean
-  - retrieve
-  - compile
-  - compile-test
-  - javadoc
+  - build
+  - docs
   - dist
-  - test
+
 variables:
-  ANT_HOME: "/home/dosi/Téléchargements/apache-ant-1.9.6/bin/ant"  # Set the path to your Ant installation
+  ANT_HOME: "/home/dosi/Téléchargements/apache-ant-1.9.6/"  # Set the path to your Ant installation
 
 before_script:
   - export PATH="$ANT_HOME/bin:$PATH"
@@ -15,88 +12,53 @@ before_script:
   - export VERSION="v$(date +'%Y%m%d')"
   - ant -version  # Check Ant installation
 
-clean-job:
-  stage: clean
+build:
+  stage: build
   script:
-    - ant clean
+    - echo "Cleaning up workspace..."
+    - rm -rf bin/* dist/*
+    - echo "Building the project with Ant..."
+    - ant -d compile
   only:
     - main
     - dev
   tags:
     - ysf_hr
 
-retrieve-job:
-  stage: retrieve
+
+javadoc:
+  stage: docs
   script:
-    - ant retrieve
-  needs:
-    - clean-job
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-
-compile-job:
-  stage: compile
-  script:
-    - ant compile
-  needs:
-    - retrieve-job
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
-  artifacts:
-    paths:
-      - bin/
-    expire_in: 1 week
-
-# Job pour compiler les tests unitaires
-compile-test-job:
-  stage: compile-test
-  script:
-    - ant compile-test
-  needs:
-    - compile-job
-  artifacts:
-    paths:
-      - bin/test/
-    expire_in: 1 week
-
-
-
-
-
-javadoc-job:
-  stage: javadoc
-  script:
+    - echo "Generating Javadoc with Ant..."
     - ant javadoc
-  needs:
-    - compile-job
   only:
     - main
     - dev
   tags:
     - ysf_hr
+  dependencies:
+    - build 
   artifacts:
     paths:
       - javadoc/
     expire_in: 1 week
 
-dist-job:
+dist:
   stage: dist
   script:
+    - echo "Packaging the project into a JAR file with Ant..."
     - ant dist
-  needs:
-    - javadoc-job
+  
   only:
     - main
     - dev
   tags:
     - ysf_hr
+  dependencies:
+    - build  
   artifacts:
     paths:
-      - bin/Tetris.jar
+      - dist/
     expire_in: 1 week
+
+
