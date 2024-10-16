@@ -1,28 +1,3 @@
-stages:
-  - build
-  - test
-
-variables:
-  ANT_HOME: "/home/dosi/Téléchargements/apache-ant-1.9.6/"  # Set the path to your Ant installation
-
-before_script:
-  - export PATH="$ANT_HOME/bin:$PATH"
-  - echo "Starting the CI/CD pipeline..."
-  - export VERSION="v$(date +'%Y%m%d')"
-  - ant -version  # Check Ant installati
-
-build:
-  stage: build
-  script:
-    - echo "Cleaning up workspace..."
-    - ant clean
-    - echo "Building the project with Ant..."
-    - ant  compile
-  only:
-    - main
-    - dev
-  tags:
-    - ysf_hr
 
 
 
