@@ -8,7 +8,6 @@ variables:
 
 stages:
   - build
-  - test
 
 build:
   stage: build
@@ -16,6 +15,8 @@ build:
     - docker build -t my-image:latest .
     - docker run my-image:latest
     - mkdir -p output
+  tags:
+    - dosi
 
   
    
