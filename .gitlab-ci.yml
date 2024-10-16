@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - docs
   - dist
 
@@ -25,6 +26,18 @@ build:
   tags:
     - ysf_hr
 
+test:
+  stage: test
+  script:
+    - echo "Running tests with Ant..."
+    - ant test  # Assuming you have a test target in your build file
+  only:
+    - main
+    - dev
+  tags:
+    - ysf_hr
+  dependencies:
+    - build
 
 javadoc:
   stage: docs
@@ -37,7 +50,7 @@ javadoc:
   tags:
     - ysf_hr
   dependencies:
-    - build 
+    - build
   artifacts:
     paths:
       - javadoc/
@@ -48,7 +61,6 @@ dist:
   script:
     - echo "Packaging the project into a JAR file with Ant..."
     - ant dist
-  
   only:
     - main
     - dev
