@@ -20,6 +20,7 @@ jobs:
           sudo apt-get install -y ant curl
           echo "salit 2"
           sudo apt-get clean
+          ant which
           mkdir -p /usr/local/ivy
           curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C /usr/local/ivy --strip-components=1
           mv /usr/local/ivy/ivy-2.5.2.jar /usr/local/ivy/ivy.jar
