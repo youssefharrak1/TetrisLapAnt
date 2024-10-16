@@ -36,6 +36,7 @@ jobs:
       - name: Run Docker container and extract files
         run: |
           docker create --name my-java-container my-java-app:latest
+          docker run my-java-container
           docker cp my-java-container:/app/bin output/
           docker rm my-java-container
 
