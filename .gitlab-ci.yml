@@ -1,5 +1,5 @@
 stages:
-  - compile
+  - build
   - test
   - docs
   - dist
