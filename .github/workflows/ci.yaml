@@ -28,7 +28,7 @@ jobs:
           cd ivy/
           cd apache-ivy-2.5.2/
           sudo ls
-          sudo mv usr/ivy/apache-ivy-2.5.2/ivy-2.5.2.jar /usr/ivy.jar
+          sudo cp usr/ivy/apache-ivy-2.5.2/*.jar /usr/ivy.jar
       
       - name: Build Ant
         run: ant dist
