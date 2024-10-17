@@ -47,4 +47,4 @@ jobs:
         if: github.event_name == 'workflow_dispatch'  # Only runs on manual trigger
         run: |
           echo "Running manual execution for Docker image push."
-          docker push your-dockerhub-username/your-image-name:${{ github.ref_name }}
+          docker push your-dockerhub-username/your-image-name:${{ github.ref_name }
