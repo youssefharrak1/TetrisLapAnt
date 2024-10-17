@@ -21,9 +21,10 @@ jobs:
           sudo apt-get install -y ant curl
           echo "salit 2"
           sudo apt-get clean
-          sudo mkdir ivy
           sudo ls
-          curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz
+          cd /usr
+          sudo mkdir ivy
+          curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | tar xz -C /usr/ivy
           sudo mv usr/ivy/ivy-2.5.2.jar /usr/ivy/ivy.jar
       
       - name: Build Ant
