@@ -52,7 +52,7 @@ jobs:
     needs: build
     steps:
       - name: Push to Docker Hub
-        if: startsWith(github.ref, 'refs/tags/') && github.ref_name != '' && (github.ref_name | split('.') | length) == 3
+        if: startsWith(github.ref, 'refs/tags/') && github.ref_name != '' && contains(github.ref_name, '.') && (github.ref_name | split('.') | length) == 3
         run: |
           echo "Pushing Docker image to Docker Hub"
           docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisant:latest ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisant:${{ github.ref_name }}
