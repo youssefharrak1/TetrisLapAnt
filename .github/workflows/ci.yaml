@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
+    tags:
+      - '*'  # Trigger on any tag  
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   build:
@@ -16,18 +18,13 @@ jobs:
       - name: Dowload Ant and Ivy
         run: |
           sudo apt-get install openjdk-17-jdk
-          echo "salit 1"
-          pwd
           sudo apt-get install -y ant curl
-          echo "salit 2"
           sudo apt-get clean
-          sudo ls
           cd /usr
           sudo mkdir ivy
           curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | sudo tar xz -C /usr/ivy
           cd ivy/
           cd apache-ivy-2.5.2/
-          sudo ls
           sudo cp *.jar /usr/share/ant/lib
       
       - name: Build Ant
@@ -49,12 +46,16 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
 
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          dockerfile: dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisant:latest
-             
+      
+  push:
+    steps:
+      -name: Push to Docker Hub
+       if: startsWith(github.ref, 'refs/tags/') && github.ref_name =~ '^[0-9]+\.[0-9]+\.[0-9]+$'
+       uses: docker/build-push-action@v2
+       with:
+        context: .
+        dockerfile: dockerfile
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisant:today  
+
           
