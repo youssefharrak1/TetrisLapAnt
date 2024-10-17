@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY bin/Tetris.jar /app/Tetris.jar
 
-RUN ant 
+# RUN ant 
 
 CMD ["java", "-jar", "Tetris.jar"]
