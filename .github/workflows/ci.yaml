@@ -39,7 +39,7 @@ jobs:
           context: .
           dockerfile: dockerfile
           push: false
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/TetrisAnt:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisAnt:latest
 
 
       - name: Login to Docker Hub
@@ -55,7 +55,7 @@ jobs:
           context: .
           dockerfile: dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/TetrisAnt:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tetrisAnt:latest
              
           
 
