@@ -24,8 +24,8 @@ jobs:
           sudo ls
           cd /usr
           sudo mkdir ivy
-
           curl -L https://dlcdn.apache.org/ant/ivy/2.5.2/apache-ivy-2.5.2-bin.tar.gz | sudo tar xz -C /usr/ivy
+          sudo ls
           sudo mv usr/ivy/ivy-2.5.2.jar /usr/ivy/ivy.jar
       
       - name: Build Ant
