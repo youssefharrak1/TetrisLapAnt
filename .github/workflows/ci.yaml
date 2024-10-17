@@ -39,5 +39,5 @@ jobs:
           context: .
           dockerfile: dockerfile
           push: false
-          tags: myImage:latest
+          tags: myimage:latest
 
