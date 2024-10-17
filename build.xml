@@ -24,7 +24,7 @@
 	  </target>
   <target name="compile" depends="clean,init,retrieve"
         description="compile les fichiers source">
-    <javac srcdir="${src.dir}" destdir="${obj.dir}" classpath="${compile.classpath}" source="17" target="17" includeantruntime="false"/>
+    <javac srcdir="${src.dir}" destdir="${obj.dir}" classpath="${compile.classpath}"  includeantruntime="false"/>
   </target>
 
   <target name="dist" depends="compile">
